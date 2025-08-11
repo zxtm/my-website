@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>兴义市桔山花语湖小区业主委员会工作动态表</title>
+    <title>桔山花语湖业委会</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
         
@@ -37,7 +37,7 @@
         .container {
             max-width: 1000px;
             margin: 0 auto;
-            padding: 60px 24px;
+            padding: 60px 24px 20px;
         }
 
         .header {
@@ -558,7 +558,7 @@
 
         @media (max-width: 768px) {
             .container {
-                padding: 40px 16px;
+                padding: 40px 16px 10px;
             }
 
             .timeline-item {
@@ -600,12 +600,247 @@
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
         }
+
+        /* 分页控件样式 */
+        .pagination-container {
+            max-width: 800px;
+            margin: 40px auto 0;
+            text-align: center;
+        }
+
+        .pagination {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 15px;
+        }
+
+        .pagination-btn {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 20px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            color: var(--text-primary);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 14px;
+            font-weight: 500;
+            min-width: 100px;
+        }
+
+        .pagination-btn:hover:not(:disabled) {
+            background: var(--accent);
+            color: white;
+            border-color: var(--accent);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(0,122,255,0.2);
+        }
+
+        .pagination-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            background: #f1f3f4;
+            color: #9aa0a6;
+        }
+
+        .pagination-btn:disabled:hover {
+            transform: none;
+            box-shadow: none;
+        }
+
+        .pagination-info {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            background: linear-gradient(135deg, var(--accent), #5AC8FA);
+            color: white;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 16px;
+            min-width: 80px;
+            justify-content: center;
+        }
+
+        .pagination-separator {
+            opacity: 0.8;
+            margin: 0 4px;
+        }
+
+        .pagination-summary {
+            font-size: 13px;
+            color: var(--text-secondary);
+            margin-top: 10px;
+        }
+
+        .pagination-text {
+            font-weight: 500;
+        }
+
+        @media (max-width: 768px) {
+            .pagination {
+                gap: 15px;
+            }
+            
+            .pagination-btn {
+                min-width: 80px;
+                padding: 10px 16px;
+                font-size: 13px;
+            }
+            
+            .pagination-text {
+                display: none;
+            }
+            
+            .pagination-info {
+                padding: 10px 20px;
+                font-size: 14px;
+            }
+        }
+
+        /* 底部版权信息 */
+        .footer {
+            margin-top: 0px;
+            padding: 30px 0 30px;
+            background: var(--secondary);
+        }
+
+        .footer-content {
+            max-width: 1000px;
+            margin: 0 auto;
+            text-align: center;
+            padding: 0 24px;
+        }
+
+        /* 导航链接 */
+        .footer-nav {
+            margin-bottom: 40px;
+        }
+
+        .footer-link {
+            display: inline-block;
+            margin: 0 25px;
+            color: #6c757d;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            transition: color 0.2s ease;
+        }
+
+        .footer-link:hover {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        /* 主要版权信息 */
+        .footer-main {
+            margin-bottom: 30px;
+        }
+
+        .footer-copyright {
+            font-size: 18px;
+            font-weight: 700;
+            color: #2c3e50;
+            margin-bottom: 8px;
+        }
+
+        .footer-rights {
+            font-size: 14px;
+            color: #6c757d;
+            margin-bottom: 8px;
+        }
+
+        .footer-disclaimer {
+            font-size: 12px;
+            color: #868e96;
+            line-height: 1.5;
+        }
+
+        /* 状态信息 */
+        .footer-status {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            font-size: 12px;
+            color: #868e96;
+        }
+
+        .status-item {
+            display: inline-block;
+        }
+
+        .status-separator {
+            margin: 0 12px;
+            color: #dee2e6;
+        }
+
+        .status-normal {
+            color: #28a745;
+            font-weight: 600;
+        }
+
+        /* 安全标识 */
+        .footer-security {
+            margin-top: 20px;
+        }
+
+        .security-badge {
+            display: inline-block;
+            padding: 8px 16px;
+            background: linear-gradient(135deg, #e3f2fd, #f3e5f5);
+            border: 1px solid #bbdefb;
+            border-radius: 20px;
+            color: var(--accent);
+            font-size: 12px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+
+        .security-badge:hover {
+            background: linear-gradient(135deg, #bbdefb, #e1bee7);
+            transform: translateY(-1px);
+        }
+
+        @media (max-width: 768px) {
+            .footer {
+                margin-top: 0px;
+                padding: 20px 0 20px;
+            }
+            
+            .footer-content {
+                padding: 0 16px;
+            }
+            
+            .footer-nav {
+                margin-bottom: 30px;
+            }
+            
+            .footer-link {
+                display: block;
+                margin: 8px 0;
+            }
+            
+            .footer-status {
+                flex-direction: column;
+                gap: 8px;
+            }
+            
+            .status-separator {
+                display: none;
+            }
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="header">
-            <h1 class="title">兴义市桔山花语湖小区业主委员会工作动态表</h1>
+            <h1 class="title">兴义市桔山花语湖小区业主委员会工作日志表</h1>
             <p class="update-time" id="updateTime">最后更新 2025年8月6日 12:24</p>
         </div>
         
@@ -704,7 +939,52 @@
                 </a>
             </div>
         </div>
+        
+        <!-- 分页控件 -->
+        <div class="pagination-container" id="paginationContainer">
+            <div class="pagination">
+                <button class="pagination-btn pagination-prev" id="prevBtn" onclick="changePage(-1)">
+                    <span>‹</span>
+                    <span class="pagination-text">上一页</span>
+                </button>
+                
+                <div class="pagination-info">
+                    <span class="pagination-current" id="currentPage">1</span>
+                    <span class="pagination-separator">/</span>
+                    <span class="pagination-total" id="totalPages">1</span>
+                </div>
+                
+                <button class="pagination-btn pagination-next" id="nextBtn" onclick="changePage(1)">
+                    <span class="pagination-text">下一页</span>
+                    <span>›</span>
+                </button>
+            </div>
+            
+            <div class="pagination-summary">
+                共 <span id="totalEvents">10</span> 条事件，每页显示 10 条
+            </div>
+        </div>
     </div>
+
+    <!-- 底部版权信息 -->
+    <footer class="footer">
+        <div class="footer-content">
+            <!-- 导航链接 -->
+            <div class="footer-nav">
+                <a href="#" class="footer-link">关于我们</a>
+                <a href="#" class="footer-link">使用条款</a>
+                <a href="#" class="footer-link">隐私政策</a>
+                <a href="#" class="footer-link">联系方式</a>
+                <a href="#" class="footer-link">帮助中心</a>
+            </div>
+            
+            <!-- 主要版权信息 -->
+            <div class="footer-main">
+                <p class="footer-copyright">© Copyright © 2025 Yszxtm. All Rights Reserved.</p>
+                <p class="footer-rights">版权所有</p>
+            </div>
+        </div>
+    </footer>
 
     <button class="add-event-btn" id="addEventBtn" onclick="showModal()">+</button>
     
@@ -768,6 +1048,184 @@
 
     <script>
         let isAdmin = false;
+        let currentPage = 1;
+        const eventsPerPage = 10;
+        let allEvents = []; // 存储所有事件数据
+
+        // 初始化所有事件数据
+        function initializeEvents() {
+            // 获取页面中现有的所有事件
+            const timelineItems = document.querySelectorAll('.timeline-item');
+            allEvents = [];
+            
+            timelineItems.forEach((item, index) => {
+                const timeElement = item.querySelector('.timeline-time');
+                const textElement = item.querySelector('.timeline-text');
+                const linkElement = item.querySelector('.timeline-content');
+                const attachmentElement = item.querySelector('.document-attachment');
+                const newBadge = item.querySelector('.new-badge');
+                
+                if (timeElement && textElement) {
+                    // 获取实际的链接地址，如果是示例链接则提取URL
+                    let actualUrl = '';
+                    if (linkElement && linkElement.href && linkElement.href !== window.location.href + '#') {
+                        actualUrl = linkElement.href;
+                    }
+                    
+                    const eventData = {
+                        id: index + 1,
+                        time: timeElement.textContent.replace(/最新/g, '').trim(),
+                        description: textElement.textContent.trim(),
+                        url: actualUrl,
+                        hasAttachment: !!attachmentElement,
+                        attachmentIcon: attachmentElement ? attachmentElement.querySelector('.document-icon').textContent : '',
+                        attachmentTitle: attachmentElement ? attachmentElement.querySelector('h4').textContent : '',
+                        attachmentDesc: attachmentElement ? attachmentElement.querySelector('p').textContent : '',
+                        isFeatured: item.classList.contains('featured'),
+                        isNew: !!newBadge
+                    };
+                    allEvents.push(eventData);
+                }
+            });
+            
+            updatePagination();
+            displayEvents();
+        }
+
+        // 显示当前页的事件
+        function displayEvents() {
+            const timelineContainer = document.getElementById('timelineContainer');
+            const timelineLine = timelineContainer.querySelector('.timeline-line');
+            
+            // 清除现有事件
+            const existingItems = timelineContainer.querySelectorAll('.timeline-item');
+            existingItems.forEach(item => item.remove());
+            
+            // 计算当前页的事件范围
+            const startIndex = (currentPage - 1) * eventsPerPage;
+            const endIndex = startIndex + eventsPerPage;
+            const eventsToShow = allEvents.slice(startIndex, endIndex);
+            
+            // 显示当前页的事件
+            eventsToShow.forEach((eventData, index) => {
+                // 第一页的第一个事件且是featured状态才显示为featured
+                const shouldBeFeatured = (currentPage === 1 && index === 0 && eventData.isFeatured);
+                const eventItem = createEventElement(eventData, shouldBeFeatured);
+                timelineContainer.appendChild(eventItem);
+            });
+            
+            // 平滑滚动到顶部
+            if (currentPage > 1) {
+                document.querySelector('.header').scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+
+        // 创建事件元素
+        function createEventElement(eventData, isFeatured = false) {
+            const eventItem = document.createElement('div');
+            eventItem.className = `timeline-item fade-in ${isFeatured ? 'featured' : ''}`;
+            
+            const linkHref = eventData.url || '#';
+            const linkTarget = eventData.url ? 'target="_blank"' : '';
+            
+            let attachmentHtml = '';
+            if (eventData.hasAttachment) {
+                attachmentHtml = `
+                    <div class="document-attachment">
+                        <div class="document-icon">${eventData.attachmentIcon}</div>
+                        <div class="document-info">
+                            <h4>${eventData.attachmentTitle}</h4>
+                            <p>${eventData.attachmentDesc}</p>
+                        </div>
+                    </div>
+                `;
+            }
+            
+            const badgeHtml = (isFeatured && eventData.isNew) ? '<span class="new-badge">最新</span>' : '';
+            
+            eventItem.innerHTML = `
+                <div class="timeline-marker"></div>
+                <a href="${linkHref}" ${linkTarget} class="timeline-content">
+                    <div class="timeline-time">
+                        ${eventData.time}
+                        ${badgeHtml}
+                    </div>
+                    <div class="timeline-text">${eventData.description}</div>
+                    ${attachmentHtml}
+                </a>
+            `;
+            
+            // 添加链接图标和点击事件
+            const linkElement = eventItem.querySelector('.timeline-content');
+            if (eventData.url && eventData.url !== '#') {
+                // 添加链接图标
+                linkElement.style.position = 'relative';
+                const linkIcon = document.createElement('span');
+                linkIcon.innerHTML = '🔗';
+                linkIcon.style.cssText = `
+                    position: absolute;
+                    top: 20px;
+                    right: 20px;
+                    opacity: 0;
+                    transition: opacity 0.3s ease;
+                    font-size: 14px;
+                `;
+                linkElement.appendChild(linkIcon);
+                
+                // 悬停显示链接图标
+                linkElement.addEventListener('mouseenter', () => {
+                    linkIcon.style.opacity = '0.6';
+                });
+                
+                linkElement.addEventListener('mouseleave', () => {
+                    linkIcon.style.opacity = '0';
+                });
+                
+                // 确保链接可以正常点击
+                linkElement.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    window.open(eventData.url, '_blank');
+                });
+            }
+            
+            return eventItem;
+        }
+
+        // 更新分页信息
+        function updatePagination() {
+            const totalPages = Math.ceil(allEvents.length / eventsPerPage);
+            
+            document.getElementById('currentPage').textContent = currentPage;
+            document.getElementById('totalPages').textContent = totalPages;
+            document.getElementById('totalEvents').textContent = allEvents.length;
+            
+            // 更新按钮状态
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            
+            prevBtn.disabled = currentPage === 1;
+            nextBtn.disabled = currentPage === totalPages;
+            
+            // 如果只有一页，隐藏分页控件
+            const paginationContainer = document.getElementById('paginationContainer');
+            if (totalPages <= 1) {
+                paginationContainer.style.display = 'none';
+            } else {
+                paginationContainer.style.display = 'block';
+            }
+        }
+
+        // 切换页面
+        function changePage(direction) {
+            const totalPages = Math.ceil(allEvents.length / eventsPerPage);
+            const newPage = currentPage + direction;
+            
+            if (newPage >= 1 && newPage <= totalPages) {
+                currentPage = newPage;
+                updatePagination();
+                displayEvents();
+            }
+        }
 
         // 密码验证函数
         function simpleHash(str) {
@@ -781,8 +1239,10 @@
             return Math.abs(hash).toString(16);
         }
 
-        // 验证密钥
-        const authKey = simpleHash("admin123");
+        // 验证密钥 - 临时显示调试信息
+        const testPassword = "admin123";
+        const authKey = simpleHash(testPassword);
+        console.log('正确密码的哈希值:', authKey); // 调试用，生产环境应删除
 
         // 管理员登录功能
         function adminLogin() {
@@ -919,61 +1379,33 @@
                 return;
             }
 
-            const timelineContainer = document.getElementById('timelineContainer');
-            
-            // Remove featured class from other items
-            const featuredItems = document.querySelectorAll('.timeline-item.featured');
-            featuredItems.forEach(item => {
-                item.classList.remove('featured');
-                const badge = item.querySelector('.new-badge');
-                if (badge) badge.remove();
-            });
-
             // 创建事件数据对象
             const eventData = {
-                url: url.trim(),
+                id: Date.now(),
                 time: time,
                 description: description,
+                url: url.trim(),
                 hasAttachment: hasAttachment,
                 attachmentTitle: hasAttachment ? (document.getElementById('attachmentTitle').value || '相关文档') : '',
                 attachmentDesc: hasAttachment ? (document.getElementById('attachmentDesc').value || '附件文件') : '',
-                attachmentIcon: hasAttachment ? document.getElementById('attachmentIcon').value : ''
+                attachmentIcon: hasAttachment ? document.getElementById('attachmentIcon').value : '',
+                isFeatured: true,
+                isNew: true
             };
 
-            const newItem = document.createElement('div');
-            newItem.className = 'timeline-item featured fade-in';
-            
-            const linkHref = eventData.url ? eventData.url : '#';
-            const linkTarget = eventData.url ? 'target="_blank"' : '';
-            
-            let attachmentHtml = '';
-            if (eventData.hasAttachment) {
-                attachmentHtml = `
-                    <div class="document-attachment">
-                        <div class="document-icon">${eventData.attachmentIcon}</div>
-                        <div class="document-info">
-                            <h4>${eventData.attachmentTitle}</h4>
-                            <p>${eventData.attachmentDesc}</p>
-                        </div>
-                    </div>
-                `;
-            }
-            
-            newItem.innerHTML = `
-                <div class="timeline-marker"></div>
-                <a href="${linkHref}" ${linkTarget} class="timeline-content">
-                    <div class="timeline-time">
-                        ${eventData.time}
-                        <span class="new-badge">最新</span>
-                    </div>
-                    <div class="timeline-text">${eventData.description}</div>
-                    ${attachmentHtml}
-                </a>
-            `;
+            // 移除其他事件的featured和new状态
+            allEvents.forEach(event => {
+                event.isFeatured = false;
+                event.isNew = false;
+            });
 
-            // Insert after timeline-line
-            const timelineLine = timelineContainer.querySelector('.timeline-line');
-            timelineContainer.insertBefore(newItem, timelineLine.nextSibling);
+            // 添加新事件到数组开头（最新的在前面）
+            allEvents.unshift(eventData);
+            
+            // 重新显示第一页（包含新事件）
+            currentPage = 1;
+            updatePagination();
+            displayEvents();
 
             // Update the "last updated" time
             const now = new Date();
@@ -999,8 +1431,8 @@
             toggleAttachmentFields(); // Hide attachment fields
             hideModal();
 
-            // Smooth scroll to new item
-            newItem.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            // Smooth scroll to new item (top of timeline)
+            document.querySelector('.header').scrollIntoView({ behavior: 'smooth' });
         }
 
         // 生成新事件的HTML代码
