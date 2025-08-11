@@ -1036,6 +1036,18 @@
         const eventsPerPage = 10;
         let allEvents = []; // 存储所有事件数据
 
+        // 密码验证函数 - 使用更强的哈希算法
+        async function hashPassword(password) {
+            const encoder = new TextEncoder();
+            const data = encoder.encode(password + 'jshyh2025salt'); // 添加盐值
+            const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+            const hashArray = Array.from(new Uint8Array(hashBuffer));
+            return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+        }
+
+        // 管理员密码哈希值
+        const validPasswordHash = '47946daa23beb9414f646d9247f9ccf3312dfa2c5daa42c91408d59899751349';
+
         // 初始化所有事件数据
         function initializeEvents() {
             // 获取页面中现有的所有事件
@@ -1205,49 +1217,42 @@
             }
         }
 
-        // 密码验证函数
-        function simpleHash(str) {
-            let hash = 0;
-            if (str.length === 0) return hash;
-            for (let i = 0; i < str.length; i++) {
-                const char = str.charCodeAt(i);
-                hash = ((hash << 5) - hash) + char;
-                hash = hash & hash;
-            }
-            return Math.abs(hash).toString(16);
-        }
-
-        // 验证密钥
-        const testPassword = "admin123";
-        const authKey = simpleHash(testPassword);
-
         // 管理员登录功能
-        function adminLogin() {
+        async function adminLogin() {
             const password = prompt('请输入管理员密码:');
             
-            if (password && simpleHash(password) === authKey) {
-                isAdmin = true;
-                const adminLoginBtn = document.getElementById('adminLogin');
-                const adminStatusBtn = document.getElementById('adminStatus');
-                const addBtn = document.getElementById('addEventBtn');
-                
-                // 隐藏登录按钮
-                if (adminLoginBtn) {
-                    adminLoginBtn.style.visibility = 'hidden';
-                    adminLoginBtn.style.opacity = '0';
+            if (password) {
+                try {
+                    const hashedInput = await hashPassword(password);
+                    
+                    if (hashedInput === validPasswordHash) {
+                        isAdmin = true;
+                        const adminLoginBtn = document.getElementById('adminLogin');
+                        const adminStatusBtn = document.getElementById('adminStatus');
+                        const addBtn = document.getElementById('addEventBtn');
+                        
+                        // 隐藏登录按钮
+                        if (adminLoginBtn) {
+                            adminLoginBtn.style.visibility = 'hidden';
+                            adminLoginBtn.style.opacity = '0';
+                        }
+                        
+                        // 显示管理员状态和添加按钮
+                        if (adminStatusBtn) {
+                            adminStatusBtn.classList.add('show');
+                        }
+                        if (addBtn) {
+                            addBtn.classList.add('show');
+                        }
+                        
+                        sessionStorage.setItem('adminLoggedIn', 'true');
+                    } else {
+                        alert('密码错误！');
+                    }
+                } catch (error) {
+                    console.error('密码验证失败:', error);
+                    alert('验证过程中出现错误，请重试！');
                 }
-                
-                // 显示管理员状态和添加按钮
-                if (adminStatusBtn) {
-                    adminStatusBtn.classList.add('show');
-                }
-                if (addBtn) {
-                    addBtn.classList.add('show');
-                }
-                
-                sessionStorage.setItem('adminLoggedIn', 'true');
-            } else if (password !== null) {
-                alert('密码错误！');
             }
         }
 
