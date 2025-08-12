@@ -958,11 +958,12 @@
                 <a href="#" class="footer-link">关于我们</a>
                 <a href="#" class="footer-link">使用条款</a>
                 <a href="#" class="footer-link">隐私政策</a>
+                <a href="#" class="footer-link">联系方式</a>
             </div>
             
             <!-- 主要版权信息 -->
             <div class="footer-main">
-                <p class="footer-copyright">Copyright © 2025 Yszxtm. All Rights Reserved.</p>
+                <p class="footer-copyright">© Copyright © 2025 Yszxtm. All Rights Reserved.</p>
                 <p class="footer-rights">版权所有</p>
             </div>
         </div>
@@ -1427,8 +1428,191 @@
             toggleAttachmentFields();
             hideModal();
 
+            // 生成要添加到代码中的HTML
+            generateCodeForNewEvent(eventData);
+
             // 平滑滚动到顶部
             document.querySelector('.header').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // 生成新事件的HTML代码
+        function generateCodeForNewEvent(eventData) {
+            const linkHref = eventData.url ? eventData.url : '#';
+            const linkTarget = eventData.url ? 'target="_blank"' : '';
+            
+            let attachmentHtml = '';
+            if (eventData.hasAttachment) {
+                attachmentHtml = `
+                    <div class="document-attachment">
+                        <div class="document-icon">${eventData.attachmentIcon}</div>
+                        <div class="document-info">
+                            <h4>${eventData.attachmentTitle}</h4>
+                            <p>${eventData.attachmentDesc}</p>
+                        </div>
+                    </div>`;
+            }
+
+            const newEventHTML = `
+            <div class="timeline-item featured">
+                <div class="timeline-marker"></div>
+                <a href="${linkHref}" ${linkTarget} class="timeline-content">
+                    <div class="timeline-time">
+                        ${eventData.time}
+                        <span class="new-badge">最新</span>
+                    </div>
+                    <div class="timeline-text">${eventData.description}</div>${attachmentHtml}
+                </a>
+            </div>`;
+
+            // 显示代码给用户复制
+            showCodeModal(newEventHTML, eventData.time);
+        }
+
+        // 显示代码模态框
+        function showCodeModal(htmlCode, eventTime) {
+            // 创建模态框
+            const codeModal = document.createElement('div');
+            codeModal.id = 'codeModal';
+            codeModal.style.cssText = `
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0,0,0,0.7);
+                backdrop-filter: blur(10px);
+                z-index: 10000;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                opacity: 0;
+                transition: opacity 0.3s ease;
+            `;
+
+            const modalContent = document.createElement('div');
+            modalContent.style.cssText = `
+                background: white;
+                padding: 30px;
+                border-radius: 20px;
+                max-width: 90%;
+                max-height: 80%;
+                overflow-y: auto;
+                transform: scale(0.9);
+                transition: transform 0.3s ease;
+            `;
+
+            modalContent.innerHTML = `
+                <h3 style="margin-bottom: 20px; color: #2c3e50;">新事件已添加！</h3>
+                <p style="margin-bottom: 15px; color: #666;">要永久保存此事件，请将以下代码添加到HTML中的时间线容器内（在第一个现有事件之前）：</p>
+                
+                <div style="background: #f8f9fa; padding: 15px; border-radius: 10px; border-left: 4px solid #007AFF; margin: 20px 0;">
+                    <strong>插入位置：</strong>找到代码中的 <code>&lt;div class="timeline-item featured"&gt;</code>（第一个事件），在它之前插入下面的代码
+                </div>
+                
+                <textarea id="generatedCode" readonly style="
+                    width: 100%;
+                    height: 200px;
+                    padding: 15px;
+                    border: 1px solid #ddd;
+                    border-radius: 10px;
+                    font-family: 'Courier New', monospace;
+                    font-size: 12px;
+                    background: #f8f9fa;
+                    resize: vertical;
+                ">${htmlCode}</textarea>
+                
+                <div style="margin-top: 20px; text-align: center;">
+                    <button onclick="copyCode()" style="
+                        background: #007AFF;
+                        color: white;
+                        border: none;
+                        padding: 12px 24px;
+                        border-radius: 10px;
+                        font-size: 14px;
+                        font-weight: 600;
+                        cursor: pointer;
+                        margin-right: 10px;
+                        transition: background 0.2s ease;
+                    " onmouseover="this.style.background='#0056b3'" onmouseout="this.style.background='#007AFF'">
+                        📋 复制代码
+                    </button>
+                    <button onclick="closeCodeModal()" style="
+                        background: #6c757d;
+                        color: white;
+                        border: none;
+                        padding: 12px 24px;
+                        border-radius: 10px;
+                        font-size: 14px;
+                        font-weight: 600;
+                        cursor: pointer;
+                        transition: background 0.2s ease;
+                    " onmouseover="this.style.background='#545b62'" onmouseout="this.style.background='#6c757d'">
+                        关闭
+                    </button>
+                </div>
+                
+                <div style="margin-top: 20px; padding: 15px; background: #fff3cd; border-radius: 10px; border-left: 4px solid #ffc107;">
+                    <strong>💡 提示：</strong>
+                    <ul style="margin: 10px 0 0 20px; color: #856404;">
+                        <li>复制上面的代码</li>
+                        <li>编辑您的HTML文件</li>
+                        <li>将代码插入到第一个事件之前</li>
+                        <li>保存文件并重新上传到服务器</li>
+                        <li>记得移除旧的第一个事件的"featured"类和"最新"标签</li>
+                    </ul>
+                </div>
+            `;
+
+            codeModal.appendChild(modalContent);
+            document.body.appendChild(codeModal);
+
+            // 动画显示
+            setTimeout(() => {
+                codeModal.style.opacity = '1';
+                modalContent.style.transform = 'scale(1)';
+            }, 10);
+
+            // 点击外部关闭
+            codeModal.addEventListener('click', function(e) {
+                if (e.target === codeModal) {
+                    closeCodeModal();
+                }
+            });
+        }
+
+        // 复制代码到剪贴板
+        function copyCode() {
+            const textarea = document.getElementById('generatedCode');
+            textarea.select();
+            textarea.setSelectionRange(0, 99999); // For mobile devices
+            
+            try {
+                document.execCommand('copy');
+                // 显示复制成功提示
+                const copyBtn = event.target;
+                const originalText = copyBtn.textContent;
+                copyBtn.textContent = '✅ 已复制!';
+                copyBtn.style.background = '#28a745';
+                
+                setTimeout(() => {
+                    copyBtn.textContent = originalText;
+                    copyBtn.style.background = '#007AFF';
+                }, 2000);
+            } catch (err) {
+                alert('复制失败，请手动复制代码');
+            }
+        }
+
+        // 关闭代码模态框
+        function closeCodeModal() {
+            const modal = document.getElementById('codeModal');
+            if (modal) {
+                modal.style.opacity = '0';
+                modal.querySelector('div').style.transform = 'scale(0.9)';
+                setTimeout(() => {
+                    document.body.removeChild(modal);
+                }, 300);
+            }
         }
 
         // 关闭模态框的事件处理
